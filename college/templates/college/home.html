@@ -1,0 +1,111 @@
+{% extends 'college/base.html' %}
+
+{% block content %}
+<div class="home-container">
+    <div class="home-hero">
+        <div class="hero-icon">
+            <i class="fas fa-university"></i>
+        </div>
+        <h1 class="hero-title">Welcome to College Management System</h1>
+        <p class="hero-subtitle">Streamline your academic administration with our comprehensive management solution</p>
+        
+        <div class="quick-stats">
+            <a href="{% url 'department_list' %}" class="stat-card">
+                <i class="fas fa-building"></i>
+                <h3>Departments</h3>
+                <p>Manage all academic departments</p>
+            </a>
+            <a href="{% url 'course_list' %}" class="stat-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Courses</h3>
+                <p>Organize course offerings</p>
+            </a>
+            <a href="{% url 'student_list' %}" class="stat-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Students</h3>
+                <p>Track student records</p>
+            </a>
+            <a href="{% url 'faculty_list' %}" class="stat-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Faculty</h3>
+                <p>Manage teaching staff</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .home-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .home-hero {
+        text-align: center;
+        padding: 3rem 0;
+    }
+
+    .hero-icon {
+        font-size: 4rem;
+        color: #4f46e5;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+    }
+
+    .quick-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+    }
+
+    .stat-card {
+        display: block;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-card i {
+        font-size: 2rem;
+        color: #4f46e5;
+        margin-bottom: 1rem;
+    }
+
+    .stat-card h3 {
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-card p {
+        color: #64748b;
+        font-size: 0.9rem;
+    }
+</style>
+{% endblock %}

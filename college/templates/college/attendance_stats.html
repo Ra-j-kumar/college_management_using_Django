@@ -1,0 +1,8 @@
+{% extends 'college/base.html' %}
+
+{% block content %}
+<h1>Attendance Statistics for {{ course.name }}</h1>
+<img src="data:image/png;base64,{{ graphic }}" alt="Attendance Pie Chart">
+<br>
+<a href="{% url 'course_attendance' course.id %}">Back to Attendance List</a>
+{% endblock %}

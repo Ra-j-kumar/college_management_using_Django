@@ -1,0 +1,75 @@
+{% extends 'college/base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden p-8 mt-10">
+    <div class="text-center mb-8">
+        <div class="bg-indigo-100 p-3 rounded-full inline-flex items-center justify-center mb-4">
+            <i class="fas fa-university text-indigo-600 text-2xl"></i>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-800">Create New Department</h1>
+        <p class="text-gray-600 mt-2">Enter department details below</p>
+    </div>
+
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        <div class="space-y-4">
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                    <i class="fas fa-{% if field.name == 'name' %}tag{% else %}code{% endif %} text-indigo-500 mr-2"></i>
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.help_text %}
+                <p class="mt-1 text-xs text-gray-500">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                <p class="mt-1 text-xs text-red-600">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="flex justify-end space-x-4 pt-6 border-t border-gray-100">
+            <a href="{% url 'department_list' %}" class="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 flex items-center">
+                <i class="fas fa-times mr-2"></i> Cancel
+            </a>
+            <button type="submit" class="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg shadow-sm text-sm font-medium hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 transform hover:scale-105 flex items-center">
+                <i class="fas fa-save mr-2"></i> Save Department
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .form-group input, 
+    .form-group textarea, 
+    .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        transition: all 0.2s;
+        font-size: 0.875rem;
+    }
+    
+    .form-group input:focus, 
+    .form-group textarea:focus, 
+    .form-group select:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        outline: none;
+    }
+    
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .max-w-md {
+        max-width: 28rem;
+    }
+</style>
+{% endblock %}

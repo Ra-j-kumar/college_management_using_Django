@@ -1,0 +1,171 @@
+{% extends 'college/base.html' %}
+
+{% block content %}
+<div class="faculty-list-container">
+    <div class="faculty-list-header">
+        <h1 class="faculty-list-title">
+            <i class="fas fa-chalkboard-teacher"></i>
+            Faculty Members
+        </h1>
+        <a href="{% url 'faculty_create' %}" class="add-faculty-button">
+            <i class="fas fa-user-plus"></i> Add New Faculty
+        </a>
+    </div>
+
+    {% if faculties %}
+    <div class="faculty-cards">
+        {% for faculty in faculties %}
+        <div class="faculty-card">
+            <div class="faculty-avatar">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="faculty-info">
+                <h3>{{ faculty.first_name }} {{ faculty.last_name }}</h3>
+                <p class="department">{{ faculty.department.name }}</p>
+                <div class="faculty-details">
+                    <p><i class="fas fa-envelope"></i> {{ faculty.email }}</p>
+                    <p><i class="fas fa-calendar-alt"></i> Joined: {{ faculty.hire_date }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-faculty">
+        <i class="fas fa-user-slash"></i>
+        <h3>No Faculty Members Found</h3>
+        <p>Get started by adding your first faculty member</p>
+        <a href="{% url 'faculty_create' %}" class="add-faculty-button">
+            <i class="fas fa-plus"></i> Add Faculty
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .faculty-list-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .faculty-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .faculty-list-title {
+        font-size: 28px;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .add-faculty-button {
+        background: linear-gradient(to right, #3498db, #9b59b6);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .add-faculty-button:hover {
+        background: linear-gradient(to right, #2980b9, #8e44ad);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .faculty-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .faculty-card {
+        background: linear-gradient(to bottom right, #f8f9fa, white);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        transition: all 0.3s;
+        border: 1px solid #e0e0e0;
+    }
+
+    .faculty-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .faculty-avatar {
+        width: 50px;
+        height: 50px;
+        background-color: #e0f2fe;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #3498db;
+        font-size: 20px;
+    }
+
+    .faculty-info h3 {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 18px;
+    }
+
+    .faculty-info .department {
+        margin: 5px 0;
+        color: #9b59b6;
+        font-weight: 500;
+    }
+
+    .faculty-details {
+        margin-top: 10px;
+    }
+
+    .faculty-details p {
+        margin: 8px 0 0;
+        color: #7f8c8d;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .no-faculty {
+        text-align: center;
+        padding: 40px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        color: #7f8c8d;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .no-faculty i {
+        font-size: 40px;
+        margin-bottom: 15px;
+        color: #bdc3c7;
+    }
+
+    .no-faculty h3 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .no-faculty p {
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}

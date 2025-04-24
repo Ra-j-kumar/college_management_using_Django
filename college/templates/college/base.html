@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f7ff;
+        }
+        
+        nav {
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #a855f7);
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .content-container {
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4b5563;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+        <a href="{% url 'department_list' %}"><i class="fas fa-building"></i> Departments</a>
+        <a href="{% url 'course_list' %}"><i class="fas fa-book"></i> Courses</a>
+        <a href="{% url 'student_list' %}"><i class="fas fa-user-graduate"></i> Students</a>
+        <a href="{% url 'faculty_list' %}"><i class="fas fa-chalkboard-teacher"></i> Faculty</a>
+        <a href="{% url 'attendance_list' %}"><i class="fas fa-clipboard-check"></i> Attendance</a>
+    </nav>
+    <div class="content-container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
